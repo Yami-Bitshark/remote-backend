@@ -1,7 +1,7 @@
 var mostRated = require('../../modules/mostRated');
 
 module.exports = {
-  trendRepos : function(req,res){
+  getRepos : function(req,res){
     mostRated.getRepos(function(out){
       if (out) {
           res.status(200);

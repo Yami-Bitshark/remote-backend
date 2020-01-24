@@ -30,41 +30,24 @@ function search(key, inputArray){
  return false;
 }
 
+/**
+ *
+ * this function will be used to sort languages array for popularity
+ */
+function compare( a, b ) {
+  if ( a.used < b.used ){
+    return 1;
+  }
+  if ( a.used > b.used ){
+    return -1;
+  }
+  return 0;
+}
+
 
 // initiate the scraper
 var x = Xray();
 
-//axios.get('https://api.github.com/search/repositories',{
-//  params:{
-//    sort : 'stars',
-//    order : 'desc',
-//    q : 'language:java'
-//  }
-//})
-
-//x('https://github.com/trending', 'article.Box-row', [{
-//  url: 'h1.h3.lh-condensed a@href',
-//  lang : 'span[itemprop="programmingLanguage"]'
-//}])(function(err, res) {
-//  var res2 = []
-//  console.log(res) // Google
-//  console.log(res.length) // Google
-//  var ob = res.find(function(data){
-//      if (data.lang === 'Rust') {
-//        return data
-//      }
-//  })
-//  console.log(ob.lang)
-//  //for (var i = 0; i < res.length; i++) {
-//  //  if (res[i].lang) {
-//  //      if (true) {
-//  //
-//  //      } else {
-//  //
-//  //      }
-//  //  }
-//  //}
-//})
 var trending = {
 /**
  * Function that scrapes the github page and returns the 25 trending repos
@@ -147,6 +130,7 @@ var trending = {
           }
         }
         if (res2.length > 0) {
+          res2.sort(compare);
           cb(res2);
         } else {
           cb(false);

@@ -1,4 +1,5 @@
 "use strict"
+var http = require('http');
 var path = require('path');
 //var favicon = require('serve-favicon');
 var express = require('express');
@@ -33,7 +34,7 @@ var init = function(app) {
         return router;
     }());
 
-    app.use('/', require('./routes/routes.js'));
+    app.use('/', require('./routes.js'));
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {
@@ -63,6 +64,6 @@ var init = function(app) {
 var app = express();
 init(app);
 let server = http.createServer(app);
-    server.listen(env.NODE_PORT || 8080, '::', function() {
-        console.log(`Application worker started at Port :${env.NODE_PORT || 4000}`);
+    server.listen(8080, '::', function() {
+        console.log(`Application worker started at Port : 8080`);
     });
